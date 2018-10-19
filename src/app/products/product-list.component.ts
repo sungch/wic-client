@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
   products: IProduct[] = [];
 
   constructor(private productService: ProductService) {
-
+ 
   }
 
   onRatingClicked(message: string): void {
@@ -37,7 +37,7 @@ export class ProductListComponent implements OnInit {
   performFilter(filterBy: string): IProduct[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.products.filter((product: IProduct) =>
-      product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+      product.productName.toLocaleLowerCase().indexOf(filterBy) >= 0);
   }
 
   toggleImage(): void {

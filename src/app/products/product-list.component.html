@@ -17,6 +17,7 @@
       </div>
     </div>
     <div class='table-responsive'>
+      <!-- Convert this part to div for smaller device friendly -->
       <table class='table'
              *ngIf='products && products.length'>
         <thead>
@@ -27,11 +28,11 @@
                 {{showImage ? 'Hide' : 'Show'}} Image
               </button>
             </th>
-            <th>Product</th>
-            <th>Code</th>
-            <th>Available</th>
-            <th>Price</th>
-            <th>5 Star Rating</th>
+            <!-- <th>imageUrl</th> -->
+            <th>categoryName(id)</th>
+            <th>productName(id)</th>
+            <th>ProductDescription</th>
+            <th>BarCode</th>
           </tr>
         </thead>
         <tbody>
