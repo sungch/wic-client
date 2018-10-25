@@ -9,10 +9,12 @@ import { IProduct } from './product';
   providedIn: 'root'
 })
 export class ProductService {
-  private productUrl = 'api/products/products.json';
+  // private productUrl = 'api/products/products.json';
+  private productUrl = 'http://localhost:8080/order/11';
 
   constructor(private http: HttpClient) { }
 
+  // tap allows to see data in stream without latering the stream.
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.productUrl).pipe(
       tap(data => console.log('All: ' + JSON.stringify(data))),
@@ -22,7 +24,7 @@ export class ProductService {
 
   getProduct(id: number): Observable<IProduct | undefined> {
     return this.getProducts().pipe(
-      map((products: IProduct[]) => products.find(p => p.productId === id))
+      map((products: IProduct[]) => products.find(p => p.id === id))
     );
   }
 
