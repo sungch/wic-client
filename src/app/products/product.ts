@@ -3,7 +3,6 @@ export interface IProduct {
   barcode: string;
   description: string;
   imageUrl: string;
+  handling: boolean;
   name: string;
-  categoryId: number;
-  missingProducts: any[];
 }

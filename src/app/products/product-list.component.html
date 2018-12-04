@@ -23,16 +23,12 @@
         <thead>
           <tr>
             <th>
-              <button class='btn btn-primary'
-                      (click)='toggleImage()'>
-                {{showImage ? 'Hide' : 'Show'}} Image
-              </button>
+              <button class='btn btn-primary' (click)='toggleImage()'>{{showImage ? 'Hide' : 'Show'}} Image</button>
             </th>
-            <!-- <th>imageUrl</th> -->
-            <th>categoryName(id)</th>
-            <th>productName(id)</th>
-            <th>ProductDescription</th>
-            <th>BarCode</th>
+            <th>name</th>
+            <th>description</th>
+            <th>isHandling</th>
+            <th>barcode</th>
           </tr>
         </thead>
         <tbody>
@@ -40,23 +36,18 @@
             <td>
               <img *ngIf='showImage'
                    [src]='product.imageUrl'
-                   [title]='product.productName'
+                   [title]='product.name'
                    [style.width.px]='imageWidth'
                    [style.margin.px]='imageMargin'>
             </td>
-            <td>
-              <a [routerLink]="['/products', product.productId]">
-                {{ product.productName }}
-              </a>
-            </td>
-            <td>{{ product.productCode | lowercase | convertToSpaces: '-' }}</td>
-            <td>{{ product.releaseDate }}</td>
-            <td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td>
-            <td>
-              <pm-star [rating]='product.starRating'
-                       (ratingClicked)='onRatingClicked($event)'>
-              </pm-star>
-            </td>
+            <td><a [routerLink]="['/products', product.id]">{{ product.name }}</a></td>
+            <td>{{product.description}}</td>
+            <td>{{product.handling}}</td>
+            <td>{{product.barcode}}</td>
+            <!--<td>{{ product.productCode | lowercase | convertToSpaces: '-' }}</td>-->
+            <!--<td>{{ product.releaseDate }}</td>-->
+            <!--<td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td>-->
+            <!--<td><pm-star [rating]='product.starRating' (ratingClicked)='onRatingClicked($event)'></pm-star></td>-->
           </tr>
         </tbody>
       </table>
