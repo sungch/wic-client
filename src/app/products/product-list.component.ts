@@ -7,8 +7,9 @@ import { ProductService } from './product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
+
 export class ProductListComponent implements OnInit {
-  pageTitle = 'Product List';
+  pageTitle = 'Search or Pick a product name';
   imageWidth = 50;
   imageMargin = 2;
   showImage = false;
@@ -28,10 +29,6 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService) {
 
-  }
-
-  onRatingClicked(message: string): void {
-    this.pageTitle = 'Product List: ' + message;
   }
 
   performFilter(filterBy: string): IProduct[] {
