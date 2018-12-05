@@ -3,36 +3,30 @@
   <div class='card-header'>{{pageTitle}}</div>
 
   <div class='card-body'>
-
-
-    <div>
-      <input type='text' placeholder='enter product name' [(ngModel)]='listFilter'/>
-    </div>
-
-    <hr/>
-
-    <div>
-      <button class='btn btn-sm' (click)='toggleImage()'>{{showImage ? 'Hide' : 'Show'}} Image</button>
+    <div class="row">
+      <div class="col">
+        <input type='text' placeholder='enter product name' [(ngModel)]='listFilter'/>
+      </div>
+      <div class="col">
+        <button class='btn btn-sm' (click)='toggleImage()'>{{showImage ? 'Hide' : 'Show'}} Image</button>
+      </div>
     </div>
 
     <div class="row" *ngIf='products && products.length'>
-
-      <div class="row">
-        <div *ngFor='let product of filteredProducts'>
-          <div>
-            <a [routerLink]="['/products', product.id]">
-              <img *ngIf='showImage'
-                   [src]='product.imageUrl' [title]='product.name'
-                   [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
-            </a>
-          </div>
-          <div>
-            [<a [routerLink]="['/products', product.id]">{{ product.name }}</a>]
-          </div>
+      <div *ngFor='let product of filteredProducts'>
+        <div class="col">
+          <a [routerLink]="['/products', product.id]">
+            <img *ngIf='showImage'
+               [src]='product.imageUrl' [title]='product.name'
+               [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+          </a>
+        </div>
+        <div>
+          [<a [routerLink]="['/products', product.id]">{{ product.name }}</a>]
         </div>
       </div>
-
     </div>
+
   </div>
 </div>
 
