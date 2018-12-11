@@ -5,4 +5,5 @@ export interface IProduct {
   imageUrl: string;
   handling: boolean;
   name: string;
+  quantity: number;
 }

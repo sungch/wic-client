@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
+import {GlobalDataServivce} from '../shared/global.data.servivce';
+
 
 @Component({
   templateUrl: './product-list.component.html',
@@ -27,7 +29,7 @@ export class ProductListComponent implements OnInit {
   filteredProducts: IProduct[] = [];
   products: IProduct[] = [];
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private dataService: GlobalDataServivce) {
 
   }
 
@@ -43,9 +45,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(
-      products => {
-        this.products = products;
+      list => {
+        this.products = list;
         this.filteredProducts = this.products;
+        this.dataService.products = this.products;
       },
       error => this.errorMessage = <any>error
     );

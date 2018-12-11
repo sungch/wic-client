@@ -6,6 +6,7 @@ import { ProductDetailComponent } from './product-detail.component';
 import { ConvertToSpacesPipe } from '../shared/convert-to-spaces.pipe';
 import { ProductDetailGuard } from './product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
+import {GlobalDataServivce} from '../shared/global.data.servivce';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { SharedModule } from '../shared/shared.module';
     ProductListComponent,
     ProductDetailComponent,
     ConvertToSpacesPipe
-  ]
+  ],
+  providers: [ GlobalDataServivce ]
 })
 export class ProductModule { }

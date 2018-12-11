@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
+import {GlobalDataServivce} from '../shared/global.data.servivce';
 
 @Component({
   templateUrl: './product-detail.component.html',
@@ -14,8 +15,9 @@ export class ProductDetailComponent implements OnInit {
   product: IProduct | undefined;
 
   constructor(private route: ActivatedRoute,
-    private router: Router,
-    private productService: ProductService) {
+              private router: Router,
+              private productService: ProductService,
+              private dataService: GlobalDataServivce) {
   }
 
   ngOnInit() {
@@ -27,9 +29,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getProduct(id: number) {
-    this.productService.getProduct(id).subscribe(
-      product => this.product = product,
-      error => this.errorMessage = <any>error);
+    this.product = this.dataService.products.find(product => product.id === id);
   }
 
   onBack(): void {
