@@ -38,12 +38,25 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onAddToShoppingCart() {
-    if (this.product.quantity > 0) {
-      this.activityLog = 'Added ' + this.product.name + ':' + this.product.quantity;
-      this.dataService.orderedProducts.push(this.product);
+    const orderedProd = this.findProduct();
+    if (this.dataService.orderedProducts.length > 0 && orderedProd != null) {
+      this.overrideQuantity(orderedProd);
     } else {
-      this.activityLog = 'Enter non-zero order quantity';
-      this.dataService.orderedProducts.pop();
+      this.addItem();
     }
+  }
+
+  findProduct() {
+    return this.dataService.orderedProducts.find( item => item.id === this.product.id );
+  }
+
+  overrideQuantity(orderedProd: IProduct) {
+      orderedProd.quantity = this.product.quantity;
+      this.activityLog = 'Modified quantity:' + this.product.name + ': ' + this.product.quantity;
+  }
+
+  addItem() {
+    this.dataService.orderedProducts.push(this.product);
+    this.activityLog = 'Added to shopping cart:' + this.product.name + ': ' + this.product.quantity;
   }
 }

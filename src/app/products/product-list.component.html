@@ -29,11 +29,28 @@
 
   </div>
 
-  <div class="row card-footer">
-    <div class="col-sm-4">Shopping Cart:</div>
-    <div class="col-sm-8" *ngFor=' let prod of dataService.orderedProducts'>
-      <div class="row">
-        {{prod.id}} {{prod.name}} {{prod.quantity}}
+  <div class="card-footer">Shopping Cart
+    <div class="row">
+        <div class="col-sm-4">
+            ID
+        </div>
+        <div class="col-sm-4">
+            NAME
+        </div>
+        <div class="col-sm-4">
+            QUANTITY
+        </div>
+    </div>
+    <hr/>
+    <div class="row" *ngFor=' let prod of dataService.orderedProducts'>
+      <div class="col-sm-4">
+          {{prod.id}}
+      </div>
+      <div class="col-sm-4">
+          {{prod.name}}
+      </div>
+      <div class="col-sm-4">
+          {{prod.quantity}}
       </div>
     </div>
   </div>
