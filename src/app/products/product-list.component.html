@@ -17,8 +17,8 @@
         <div class="col">
           <a [routerLink]="['/products', product.id]">
             <img *ngIf='showImage'
-               [src]='product.imageUrl' [title]='product.name'
-               [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+                 [src]='product.imageUrl' [title]='product.name'
+                 [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
           </a>
         </div>
         <div>
@@ -27,6 +27,15 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="row card-footer">
+    <div class="col-sm-4">Shopping Cart:</div>
+    <div class="col-sm-8" *ngFor=' let prod of dataService.orderedProducts'>
+      <div class="row">
+        {{prod.id}} {{prod.name}} {{prod.quantity}}
+      </div>
+    </div>
   </div>
 </div>
 

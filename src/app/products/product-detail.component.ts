@@ -12,6 +12,7 @@ import {GlobalDataServivce} from '../shared/global.data.servivce';
 export class ProductDetailComponent implements OnInit {
   pageTitle = 'Product Detail';
   errorMessage = '';
+  activityLog = '';
   product: IProduct | undefined;
 
   constructor(private route: ActivatedRoute,
@@ -36,4 +37,13 @@ export class ProductDetailComponent implements OnInit {
     this.router.navigate(['/products']);
   }
 
+  onAddToShoppingCart() {
+    if (this.product.quantity > 0) {
+      this.activityLog = 'Added ' + this.product.name + ':' + this.product.quantity;
+      this.dataService.orderedProducts.push(this.product);
+    } else {
+      this.activityLog = 'Enter non-zero order quantity';
+      this.dataService.orderedProducts.pop();
+    }
+  }
 }

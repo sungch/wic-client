@@ -14,4 +14,10 @@ export class GlobalDataServivce {
   set products(value: IProduct[]) {
     this._products = value;
   }
+
+  private _orderedProducts: IProduct[] = [];
+
+  get orderedProducts() {
+    return this._orderedProducts;
+  }
 }

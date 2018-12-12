@@ -29,7 +29,7 @@ export class ProductListComponent implements OnInit {
   filteredProducts: IProduct[] = [];
   products: IProduct[] = [];
 
-  constructor(private productService: ProductService, private dataService: GlobalDataServivce) {
+  constructor(private productService: ProductService, public dataService: GlobalDataServivce) {
 
   }
 

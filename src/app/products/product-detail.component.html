@@ -48,13 +48,23 @@
              [title]='product.name'>
       </div>
     </div>
+    <div class='row'>
+      <div class='col-sm-6'>
+        <input type='text' placeholder='Enter quantity to order' [(ngModel)]='product.quantity'/>
+      </div>
+    </div>
   </div>
 
-  <div class='card-footer'>
-    <button class='btn btn-outline-secondary'
-            (click)='onBack()'
-            style='width:80px'>
-      <i class='fa fa-chevron-left'></i> Back
-    </button>
+  <div class='card-footer' class="row">
+    <div class='col-sm-4'>
+      <button class='btn btn-outline-secondary' (click)='onBack()' style='width:80px'>
+        <i class='fa fa-chevron-left'></i> Back
+      </button>
+    </div>
+    <div class='col-sm-4'>
+      <button class='btn' (click)='onAddToShoppingCart()'>Add to shopping cart</button>
+    </div>
+    <div class=col-sm-4>{{activityLog}}</div>
+
   </div>
 </div>
