@@ -3,10 +3,9 @@ import {IProduct} from '../products/product';
 
 
 @Injectable()
-export class GlobalDataServivce {
+export class DataServivce {
 
   private _products: IProduct[] = [];
-
   get products() {
     return this._products;
   }
@@ -15,8 +14,8 @@ export class GlobalDataServivce {
     this._products = value;
   }
 
-  private _orderedProducts: IProduct[] = [];
 
+  private _orderedProducts: IProduct[] = [];
   get orderedProducts() {
     return this._orderedProducts;
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
-import {GlobalDataServivce} from '../shared/global.data.servivce';
+import {DataServivce} from '../shared/data-servivce.service';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class ConfirmationComponent {
 
   filteredProducts: IProduct[] = [];
 
-  constructor(private productService: ProductService, public dataService: GlobalDataServivce) {
+  constructor(private productService: ProductService, public dataService: DataServivce) {
 
   }
 

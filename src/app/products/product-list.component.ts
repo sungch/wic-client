@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
-import {GlobalDataServivce} from '../shared/global.data.servivce';
+import {DataServivce} from '../shared/data-servivce.service';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class ProductListComponent implements OnInit {
 
   filteredProducts: IProduct[] = [];
 
-  constructor(private productService: ProductService, public dataService: GlobalDataServivce) {
+  constructor(private productService: ProductService, public dataService: DataServivce) {
 
   }
 
@@ -69,7 +69,7 @@ export class ProductListComponent implements OnInit {
   }
 
   cancelOrder(product: IProduct) {
-    if (confirm('Are you sure to cancel this item(' + product.name + ')?')) {
+    if (confirm('Are you sure to cancel this item(' + product.name + ' (qty:' + product.quantity + ')?')) {
       const index = this.findProductIndex(product.id);
       this.dataService.orderedProducts.splice(index, 1);
     }

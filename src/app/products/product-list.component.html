@@ -59,8 +59,8 @@
       <div class="col-sm-4">
         {{product.name}}
       </div>
-      <div class="col-sm-4">
-        {{product.quantity}}
+      <div class="col-sm-4" [ngClass]="{'invalid-data': (!product.quantity || product.quantity <= 0)}">
+        {{product.quantity ? product.quantity : '' + product.quantity}}
       </div>
       <div class="col-sm-3">
         <button class='btn btn-light' (click)='cancelOrder(product)'>Cancel Order</button>

@@ -6,7 +6,7 @@ import { ProductDetailComponent } from './product-detail.component';
 import { ConvertToSpacesPipe } from '../shared/convert-to-spaces.pipe';
 import { ProductDetailGuard } from './product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
-import {GlobalDataServivce} from '../shared/global.data.servivce';
+import {DataServivce} from '../shared/data-servivce.service';
 import {ConfirmationComponent} from './confirmation.component';
 
 @NgModule({
@@ -27,6 +27,6 @@ import {ConfirmationComponent} from './confirmation.component';
     ConfirmationComponent,
     ConvertToSpacesPipe
   ],
-  providers: [ GlobalDataServivce ]
+  providers: [ DataServivce ]
 })
 export class ProductModule { }

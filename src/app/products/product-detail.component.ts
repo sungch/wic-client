@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
-import {GlobalDataServivce} from '../shared/global.data.servivce';
+import {DataServivce} from '../shared/data-servivce.service';
 
 @Component({
   templateUrl: './product-detail.component.html',
@@ -18,7 +18,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private productService: ProductService,
-              private dataService: GlobalDataServivce) {
+              private dataService: DataServivce) {
   }
 
   ngOnInit() {
