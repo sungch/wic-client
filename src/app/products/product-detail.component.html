@@ -5,54 +5,46 @@
 
   <div class='card-body'>
     <div class='row'>
-      <div class='col-md-8'>
+
+      <div class='col-sm-6'>
         <div class='row'>
-          <div class='col-md-4'>ID</div>
-          <div class='col-md-8'>{{product.id}}</div>
+          <div class='col-sm-4'>ID</div>
+          <div class='col-sm-8'>{{product.id}}</div>
         </div>
         <div class='row'>
-          <div class='col-md-4'>Name:</div>
-          <div class='col-md-8'>{{product.name}}</div>
+          <div class='col-sm-4'>Name:</div>
+          <div class='col-sm-8'>{{product.name}}</div>
         </div>
         <div class='row'>
-          <div class='col-md-4'>Barcode:</div>
-          <div class='col-md-8'>{{product.barcode | lowercase | convertToSpaces: '-'}}</div>
+          <div class='col-sm-4'>Barcode:</div>
+          <div class='col-sm-8'>{{product.barcode | lowercase | convertToSpaces: '-'}}</div>
         </div>
         <div class='row'>
-          <div class='col-md-4'>Description:</div>
-          <div class='col-md-8'>{{product.description}} </div>
+          <div class='col-sm-4'>Description:</div>
+          <div class='col-sm-8'>{{product.description}} </div>
         </div>
         <div class='row'>
-          <div class='col-md-4'>Availability:</div>
-          <div class='col-md-8'>{{product.handling}}</div>
-        </div>
-        <!-- div class='row'>
-          <div class='col-md-4'>Price:</div>
-          <div class='col-md-8'>{{product.price|currency:'USD':'symbol'}}</div>
+          <div class='col-sm-4'>Availability:</div>
+          <div class='col-sm-8'>{{product.handling}}</div>
         </div>
         <div class='row'>
-          <div class='col-md-4'>5 Star Rating:</div>
-          <div class='col-md-8'>
-            <pm-star [rating]='product.starRating'>
-            </pm-star>
+          <div class='col-sm-4'>Quantity:</div>
+          <div class='col-sm-8'>
+            <input type='number' pattern="[0-9]+" min="0" placeholder='enter number' [(ngModel)]='product.quantity' [autofocus]="true" />
           </div>
-        </div -->
+        </div>
       </div>
 
-      <div class='col-md-4'>
+      <div class='col-md-6'>
         <img class='center-block img-responsive'
-             [style.width.px]='200'
-             [style.height.px]='200'
+             [style.width.px]='300'
+             [style.height.px]='300'
              [style.margin.px]='2'
              [src]='product.imageUrl'
              [title]='product.name'>
       </div>
     </div>
-    <div class='row'>
-      <div class='col-sm-6'>
-        <input type='text' placeholder='Enter quantity to order' [(ngModel)]='product.quantity'/>
-      </div>
-    </div>
+
   </div>
 
   <div class='card-footer' class="row">
@@ -68,3 +60,15 @@
 
   </div>
 </div>
+
+<!-- div class='row'>
+  <div class='col-md-4'>Price:</div>
+  <div class='col-md-8'>{{product.price|currency:'USD':'symbol'}}</div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>5 Star Rating:</div>
+  <div class='col-md-8'>
+    <pm-star [rating]='product.starRating'>
+    </pm-star>
+  </div>
+</div -->

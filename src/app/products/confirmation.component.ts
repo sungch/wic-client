@@ -6,11 +6,11 @@ import {GlobalDataServivce} from '../shared/global.data.servivce';
 
 
 @Component({
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  templateUrl: './confirmation.component.html',
+  styleUrls: ['./confirmation.component.css']
 })
 
-export class ProductListComponent implements OnInit {
+export class ConfirmationComponent {
   pageTitle = 'Search or Pick a product name to Order';
   imageWidth = 50;
   imageMargin = 2;
@@ -40,20 +40,6 @@ export class ProductListComponent implements OnInit {
 
   toggleImage(): void {
     this.showImage = !this.showImage;
-  }
-
-  ngOnInit(): void {
-    if (!this.dataService.products || this.dataService.products.length <= 0) {
-      this.productService.getProducts().subscribe(
-          list => {
-            this.dataService.products = list;
-            this.filteredProducts = this.dataService.products;
-          },
-          error => this.errorMessage = <any>error
-      );
-    } else {
-      this.filteredProducts = this.dataService.products;
-    }
   }
 
   checkoutOrders() {

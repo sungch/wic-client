@@ -38,20 +38,25 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onAddToShoppingCart() {
-    const orderedProd = this.findProduct();
-    if (this.dataService.orderedProducts.length > 0 && orderedProd != null) {
-      this.overrideQuantity(orderedProd);
+    const previouslyOrderedProd = this.findProduct();
+    if (this.dataService.orderedProducts.length > 0 && previouslyOrderedProd != null) {
+      if (0 === parseInt(String(this.product.quantity), 10)) {
+        this.removeItem(previouslyOrderedProd.id);
+      } else {
+        this.overrideQuantity(previouslyOrderedProd);
+      }
     } else {
       this.addItem();
     }
+    this.onBack();
   }
 
   findProduct() {
     return this.dataService.orderedProducts.find( item => item.id === this.product.id );
   }
 
-  overrideQuantity(orderedProd: IProduct) {
-      orderedProd.quantity = this.product.quantity;
+  overrideQuantity(previouslyOrderedProd: IProduct) {
+      previouslyOrderedProd.quantity = this.product.quantity;
       this.activityLog = 'Modified quantity:' + this.product.name + ': ' + this.product.quantity;
   }
 
@@ -59,4 +64,14 @@ export class ProductDetailComponent implements OnInit {
     this.dataService.orderedProducts.push(this.product);
     this.activityLog = 'Added to shopping cart:' + this.product.name + ': ' + this.product.quantity;
   }
+
+  findProductIndex(id: number) {
+    return this.dataService.orderedProducts.findIndex(item => item.id === id);
+  }
+
+  removeItem(id: number) {
+    this.dataService.orderedProducts.splice(this.findProductIndex(id), 1);
+    this.activityLog = 'Removed order:' + this.product.name + ': ' + this.product.quantity;
+  }
+
 }
