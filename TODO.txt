@@ -1,7 +1,4 @@
-done -- 1. Provide a way to cancel an ordered product: Decide how to do it
-2. Add a button to "Checkout"
-3. Add interface to catch Surname, Givenname, Wic-identification number, phone, delivery address.
-4. A logic to combine user data into CustomerOrder data structure to POST to server.
-5. How to perserver data after refresh
-6. style
-7. auto-highight quantity
+Add a button to "Checkout"
+A logic to combine user data into CustomerOrder data structure to POST to server.
+How to perserver data after refresh
+when canceling an order item, zero the main list.
