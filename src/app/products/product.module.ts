@@ -6,8 +6,10 @@ import { ProductDetailComponent } from './product-detail.component';
 import { ConvertToSpacesPipe } from '../shared/convert-to-spaces.pipe';
 import { ProductDetailGuard } from './product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
-import {DataServivce} from '../shared/data-servivce.service';
+import {DataServivce} from '../shared/data.service';
 import {ConfirmationComponent} from './confirmation.component';
+import {CheckoutComponent} from './checkoutout.component';
+
 
 @NgModule({
   imports: [
@@ -18,6 +20,8 @@ import {ConfirmationComponent} from './confirmation.component';
         canActivate: [ProductDetailGuard],
         component: ProductDetailComponent
       },
+      {path: 'confirmation', component: ConfirmationComponent },
+      {path: 'checkout', component: CheckoutComponent },
     ]),
     SharedModule
   ],
@@ -25,6 +29,7 @@ import {ConfirmationComponent} from './confirmation.component';
     ProductListComponent,
     ProductDetailComponent,
     ConfirmationComponent,
+    CheckoutComponent,
     ConvertToSpacesPipe
   ],
   providers: [ DataServivce ]

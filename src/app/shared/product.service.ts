@@ -3,13 +3,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
-import { IProduct } from './product';
+import { IProduct } from '../products/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  // private productUrl = 'api/products/products.json';
+
   private productUrl = 'http://localhost:8080/products';
 
   constructor(private http: HttpClient) { }
@@ -17,7 +17,7 @@ export class ProductService {
   // tap allows to see data in stream without latering the stream.
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.productUrl).pipe(
-      tap(data => console.log('All: ' + JSON.stringify(data))),
+      // tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
@@ -43,4 +43,5 @@ export class ProductService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
+
 }

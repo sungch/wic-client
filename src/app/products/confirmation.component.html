@@ -1,91 +1,66 @@
 <div class='card'>
 
-  <div class='card-header title'>{{pageTitle}}</div>
+  <div class='card-header title uppercase'>Important: We need following information</div>
 
   <div class='card-body'>
 
-    <div class="row input-area">
-      <div class="col">
-        <input type='text' placeholder='Search product name' [(ngModel)]='listFilter' [autofocus]="true"/>
-      </div>
-      <div class="col image-toggle">
-        <button class='btn btn-light' (click)='toggleImage()'>{{showImage ? 'Hide' : 'Show'}} Image</button>
-      </div>
-    </div>
+    <div class="customer-info">
 
-    <hr>
-    <p>
-
-    <div class="row product-list" *ngIf='filteredProducts && filteredProducts.length > 0'>
-      <div *ngFor='let product of filteredProducts'>
-        <div class="col">
-          <a [routerLink]="['/products', product.id]">
-            <img *ngIf='showImage'
-                 [src]='product.imageUrl' [title]='product.name'
-                 [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
-          </a>
-        </div>
-        <div>
-          [<a [routerLink]="['/products', product.id]">{{ product.name }}</a>]
-        </div>
+      <div> wic identification number:
+        <input type='text' [value]='wicId' placeholder='wic identification number' [autofocus]='true' [(ngModel)]='wicId'/>
+      </div>
+      <div> Surname:
+        <input type='text' [value]='surname' placeholder='Surname' [(ngModel)]='surname'/>
+      </div>
+      <div> Givenname:
+        <input type='text' [value]='givenname' placeholder='Givenname' [(ngModel)]='givenname'/>
+      </div>
+      <div> phone number:
+        <input type='text' [value]='phoneNumber' placeholder='Phone Number' [(ngModel)]='phoneNumber'/>
+      </div>
+      <div> Delivery Address:
+        <input size="50" type='text' [value]='deliveryAddress' placeholder='delivery address' [(ngModel)]='deliveryAddress'/>
       </div>
     </div>
 
     <hr>
     <p>
-    <div class='shopping-cart'>Shopping Cart</div>
-    <p>
-    <hr>
 
     <div class="row uppercase">
-      <div class="col-sm-1">
-        id
-      </div>
-      <div class="col-sm-4">
-        name
-      </div>
-      <div class="col-sm-4">
-        quantity
-      </div>
-      <div class="col-sm-3"></div>
-    </div>
-    <div>
-      <hr/>
-    </div>
-    <div class="row" *ngFor=' let product of dataService.orderedProducts'>
-      <div class="col-sm-1">
-        {{product.id}}
-      </div>
-      <div class="col-sm-4">
-        {{product.name}}
-      </div>
-      <div class="col-sm-4">
-        {{product.quantity}}
-      </div>
-      <div class="col-sm-3">
-        <button class='btn btn-light' (click)='cancelOrder(product)'>Cancel Order</button>
-      </div>
+      <div class="col-sm-3">img</div>
+      <div class="col-sm-6">name: description</div>
+      <div class="col-sm-3">quantity (editable)</div>
     </div>
 
-
+    <div class="order-info" *ngIf="dataService.orderedProducts && dataService.orderedProducts.length > 0">
+      <div class="row" *ngFor='let product of dataService.orderedProducts'>
+        <div class="col-sm-3"><img [alt]='product.name'
+                                   [src]='product.imageUrl'
+                                   [style.height.px]=imageWidth
+                                   [style.margin.px]='2'
+                                   [style.width.px]=imageWidth
+                                   [title]='product.name'
+                                   class='center-block img-responsive'></div>
+        <div class="col-sm-6">{{product.name}}:{{product.description}}</div>
+        <div class="col-sm-3">
+          <input size="3" [value]='product.quantity' placeholder='edit'
+                 [(ngModel)]='product.quantity' />
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="card-footer">
+
     <div class="row">
       <div class="col-sm-6">
-        <button class='btn btn-success' *ngIf="dataService.orderedProducts.length > 0" (click)='checkoutOrders()'>
-          Proceed To Checkout
-        </button>
+        <button class='btn btn-link' (click)='saveAndHome()'>Home</button>
       </div>
       <div class="col-sm-6">
-        <button class='btn btn-danger' *ngIf="dataService.orderedProducts.length > 0" (click)='cancelAllOrders()'>
-          Cancel All Orders
-        </button>
+        <button class='btn btn-success' (click)='saveAndPost()'>Proceed to Checkout</button>
       </div>
     </div>
 
   </div>
 
 </div>
-
-<div *ngIf='errorMessage' class='alert alert-danger'>Error: {{ errorMessage }}</div>

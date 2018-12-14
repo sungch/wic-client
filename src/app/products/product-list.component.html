@@ -22,7 +22,7 @@
           <a [routerLink]="['/products', product.id]">
             <img *ngIf='showImage'
                  [src]='product.imageUrl' [title]='product.name'
-                 [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+                 [style.width.px]='imageWidth' [style.margin.px]='imageMargin' [alt]='product.name'>
           </a>
         </div>
         <div>
@@ -31,59 +31,51 @@
       </div>
     </div>
 
-    <hr>
-    <p>
-    <div class='shopping-cart'>Shopping Cart</div>
-    <p>
-    <hr>
+    <div *ngIf='dataService.orderedProducts && dataService.orderedProducts.length > 0'>
 
-    <div class="row uppercase">
-      <div class="col-sm-1">
-        id
+      <hr>
+      <div class='row shopping-cart'>
+        <div class='col-sm-12 uppercase'>Shopping Cart</div>
       </div>
-      <div class="col-sm-4">
-        name
-      </div>
-      <div class="col-sm-4">
-        quantity
-      </div>
-      <div class="col-sm-3"></div>
-    </div>
-    <div>
-      <hr/>
-    </div>
-    <div class="row" *ngFor=' let product of dataService.orderedProducts'>
-      <div class="col-sm-1">
-        {{product.id}}
-      </div>
-      <div class="col-sm-4">
-        {{product.name}}
-      </div>
-      <div class="col-sm-4" [ngClass]="{'invalid-data': (!product.quantity || product.quantity <= 0)}">
-        {{product.quantity ? product.quantity : '' + product.quantity}}
-      </div>
-      <div class="col-sm-3">
-        <button class='btn btn-light' (click)='cancelOrder(product)'>Cancel Order</button>
-      </div>
-    </div>
+      <hr>
 
+      <div class="row uppercase">
+        <div class="col-sm-4">
+          name
+        </div>
+        <div class="col-sm-4">
+          quantity
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+      <div>
+        <hr/>
+      </div>
+      <div class="row" *ngFor=' let product of dataService.orderedProducts'>
+        <div class="col-sm-4">
+          {{product.name}}
+        </div>
+        <div class="col-sm-4" [ngClass]="{'invalid-data': (!product.quantity || product.quantity <= 0)}">
+          {{product.quantity ? product.quantity : '' + product.quantity}}
+        </div>
+        <div class="col-sm-4">
+          <button class='btn btn-light' (click)='cancelOrder(product)'>Cancel Order</button>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 
   <div class="card-footer">
-    <div class="row">
+    <div class="row" *ngIf="dataService.orderedProducts.length > 0">
       <div class="col-sm-6">
-        <button class='btn btn-success' *ngIf="dataService.orderedProducts.length > 0" (click)='checkoutOrders()'>
-          Proceed To Checkout
-        </button>
+        <button class='btn btn-danger' (click)='cancelAllOrders()'>Cancel All Orders</button>
       </div>
       <div class="col-sm-6">
-        <button class='btn btn-danger' *ngIf="dataService.orderedProducts.length > 0" (click)='cancelAllOrders()'>
-          Cancel All Orders
-        </button>
+        <button class='btn btn-success' (click)='confirmInformation()'>Finished Shopping</button>
       </div>
     </div>
-
   </div>
 
 </div>

@@ -30,7 +30,7 @@
         <div class='row'>
           <div class='col-sm-4'>Quantity:</div>
           <div class='col-sm-8'>
-            <input type='number' pattern="[0-9]+" min="1" placeholder='enter number' [(ngModel)]='product.quantity' [autofocus]="true" />
+            <input type='number' min="1" placeholder='enter number' [(ngModel)]='product.quantity' [autofocus]="true" />
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
       </button>
     </div>
     <div class='col-sm-4'>
-      <button class='btn' (click)='onAddToShoppingCart()'>Add to shopping cart</button>
+      <button class='btn btn-info' (click)='onAddToShoppingCart()'>Add to shopping cart</button>
     </div>
     <div class=col-sm-4>{{activityLog}}</div>
 

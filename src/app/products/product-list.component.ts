@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IProduct } from './product';
-import { ProductService } from './product.service';
-import {DataServivce} from '../shared/data-servivce.service';
+import { ProductService } from '../shared/product.service';
+import {DataServivce} from '../shared/data.service';
+import {Router} from '@angular/router';
 
 
 @Component({
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['../shared/wic.css']
 })
 
 export class ProductListComponent implements OnInit {
@@ -28,7 +29,7 @@ export class ProductListComponent implements OnInit {
 
   filteredProducts: IProduct[] = [];
 
-  constructor(private productService: ProductService, public dataService: DataServivce) {
+  constructor(private productService: ProductService, public dataService: DataServivce, private router: Router) {
 
   }
 
@@ -56,14 +57,8 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  checkoutOrders() {
-    // Ask if check customer information and order information are all correct.
-    // Give a chance to edit customer info
-    // Give instruction on how to edit orders
-  }
-
   cancelAllOrders() {
-    if (confirm('Are you sure to calcel ALL your order selections?')) {
+    if (confirm('Are you sure to cancel ALL your orders?')) {
       this.dataService.orderedProducts.splice(0, this.dataService.orderedProducts.length);
     }
   }
@@ -79,4 +74,7 @@ export class ProductListComponent implements OnInit {
     return this.dataService.orderedProducts.findIndex(item => item.id === id);
   }
 
+  confirmInformation() {
+    this.router.navigate(['/confirmation']);
+  }
 }
